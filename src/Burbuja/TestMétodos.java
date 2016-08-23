@@ -18,8 +18,8 @@ public class TestMétodos {
         ordenamiento.setArreglo(arreglo);
         System.out.print("Arreglo desordenado: \n");
         ordenamiento.imprimirArreglo();
+        ordenamiento.shellsortMod();
         System.out.print("Arreglo ordenado: \n");
-        ordenamiento.burbujaMayor();
         ordenamiento.imprimirArreglo();
     }
 }
