@@ -81,16 +81,12 @@ public class Métodos {
     }
 
     public void shellsortMod(){
-        System.out.println("Ingresa el número TOTAL secuencias: ");
         int intervalo,i,aux;
-        int secuencias[];
+        int secuencias[] = secuencias();
         boolean band;
-        Scanner n = new Scanner(System.in);
-        secuencias = new int[n.nextInt()];
-        intervalo = secuencias.length;
 
-        for (i=0; i<intervalo;i++){
-            
+        for (int j=0; j < secuencias.length;j++){
+            intervalo = secuencias[j];
             band = true;
             while(band){
                 band = false;
@@ -109,4 +105,71 @@ public class Métodos {
         }
 
     }
+
+    public int[] secuencias(){
+        int opcion;
+        int secuencias[];
+        System.out.println("Ingresa el número de secuencias: ");
+        Scanner n = new Scanner(System.in);
+        opcion = n.nextInt();
+
+        switch (opcion){
+            case 1:
+                secuencias = new int[1];
+                secuencias[0] = 1;
+                return secuencias;
+            case 2:
+                secuencias = new int[2];
+                secuencias[0] = 6;
+                secuencias[1] = 1;
+                return secuencias;
+            case 3:
+                secuencias = new int[2];
+                secuencias[0] = 5;
+                secuencias[1] = 1;
+                return secuencias;
+            case 4:
+                secuencias = new int[2];
+                secuencias[0] = 7;
+                secuencias[1] = 1;
+                return secuencias;
+            case 5:
+                secuencias = new int[2];
+                secuencias[0] = 4;
+                secuencias[1] = 1;
+                return secuencias;
+            case 6:
+                secuencias = new int[2];
+                secuencias[0] = 3;
+                secuencias[1] = 1;
+                return secuencias;
+            case 7:
+                secuencias = new int[2];
+                secuencias[0] = 2;
+                secuencias[1] = 1;
+                return secuencias;
+            case 8:
+                secuencias = new int[3];
+                secuencias[0] = 5;
+                secuencias[1] = 3;
+                secuencias[2] = 1;
+                return secuencias;
+            case 9:
+                secuencias = new int[3];
+                secuencias[0] = 4;
+                secuencias[1] = 2;
+                secuencias[2] = 1;
+                return secuencias;
+            case 10:
+                secuencias = new int[2];
+                secuencias[0] = 3;
+                secuencias[1] = 2;
+                secuencias[2] = 1;
+                return secuencias;
+        }
+        secuencias = new int[1];
+        secuencias[0] = 1;
+        return secuencias;
+    }
+
 }
