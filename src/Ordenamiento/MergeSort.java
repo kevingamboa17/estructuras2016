@@ -2,6 +2,7 @@ package Ordenamiento;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Created by kevingamboa17 on 8/29/16.
@@ -27,7 +28,7 @@ public class MergeSort {
 
     public ArrayList merge(ArrayList L1, ArrayList L2){
         ArrayList lista = new ArrayList();
-        while(!L1.isEmpty() && !    L2.isEmpty()){
+        while(!L1.isEmpty() && !L2.isEmpty()){
             if ((Integer)L1.get(0) < (Integer)L2.get(0)){
                 lista.add(L1.get(0));
                 L1.remove(0);
@@ -48,20 +49,156 @@ public class MergeSort {
         return lista;
     }
 
-    public static void main(String[] args){
-        ArrayList lista = new ArrayList();
-        MergeSort merge= new MergeSort();
-        long inicio;
-        Random r = new Random();
-        for (int i= 0; i<100000;i++){
-            lista.add(r.nextInt(100000));
+    public ArrayList ordenaMergeMod(ArrayList <Alumno> L, int tipo){
+        int n = L.size(),i,m;
+        ArrayList<Alumno> L1 = new ArrayList <Alumno>(),
+                L2 = new ArrayList <Alumno>();
+        if (n>1){
+            m = n/2;
+            for (i=0;i<m;i++) {
+                L1.add(L.get(i));
+            }
+            for (i=m;i<n;i++){
+                L2.add(L.get(i));
+            }
+            L = mergeMod(ordenaMergeMod(L1, tipo), ordenaMergeMod(L2, tipo), tipo);
         }
-        System.out.println("Arreglo desordenado");
-        System.out.println(lista);
-        System.out.println("Arreglo ordenado");
+        return L;
+    }
+
+    public ArrayList mergeMod(ArrayList <Alumno> L1, ArrayList <Alumno> L2, int tipo){
+        ArrayList<Alumno> lista = new ArrayList <Alumno>();
+        while (!L1.isEmpty() && !L2.isEmpty()){
+            switch (tipo){
+                case 1:
+                    if (L1.get(0).getNombre().compareTo(L2.get(0).getNombre()) < 0){
+                        lista.add(L1.get(0));
+                        L1.remove(0);
+                        if (L1.isEmpty()){
+                            lista.addAll(L2);
+                            L2.clear();
+                        }
+                    }
+                    else {
+                        lista.add(L2.get(0));
+                        L2.remove(0);
+                        if (L2.isEmpty()){
+                            lista.addAll(L1);
+                            L1.clear();
+                        }
+                    }
+                    break;
+                case 2:
+                    if (L1.get(0).getApellido().compareTo(L2.get(0).getApellido()) < 0){
+                        lista.add(L1.get(0));
+                        L1.remove(0);
+                        if (L1.isEmpty()){
+                            lista.addAll(L2);
+                            L2.clear();
+                        }
+                    }
+                    else {
+                        lista.add(L2.get(0));
+                        L2.remove(0);
+                        if (L2.isEmpty()){
+                            lista.addAll(L1);
+                            L1.clear();
+                        }
+                    }
+                    break;
+                case 3:
+                    if (L1.get(0).getMatricula().compareTo(L2.get(0).getMatricula()) < 0){
+                        lista.add(L1.get(0));
+                        L1.remove(0);
+                        if (L1.isEmpty()){
+                            lista.addAll(L2);
+                            L2.clear();
+                        }
+                    }
+                    else {
+                        lista.add(L2.get(0));
+                        L2.remove(0);
+                        if (L2.isEmpty()){
+                            lista.addAll(L1);
+                            L1.clear();
+                        }
+                    }
+                    break;
+                case 4:
+                    if ((Integer)L1.get(0).getEdad() < (Integer)L2.get(0).getEdad()){
+                        lista.add(L1.get(0));
+                        L1.remove(0);
+                        if (L1.isEmpty()){
+                            lista.addAll(L2);
+                            L2.clear();
+                        }
+                    }
+                    else {
+                        lista.add(L2.get(0));
+                        L2.remove(0);
+                        if (L2.isEmpty()){
+                            lista.addAll(L1);
+                            L1.clear();
+                        }
+                    }
+                    break;
+                case 5:
+                    if ((Double)L1.get(0).getPromedio() < (Double)L2.get(0).getPromedio()){
+                        lista.add(L1.get(0));
+                        L1.remove(0);
+                        if (L1.isEmpty()){
+                            lista.addAll(L2);
+                            L2.clear();
+                        }
+                    }
+                    else {
+                        lista.add(L2.get(0));
+                        L2.remove(0);
+                        if (L2.isEmpty()){
+                            lista.addAll(L1);
+                            L1.clear();
+                        }
+                    }
+                    break;
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Alumno> crearArrayAlumnos(){
+        ArrayList<Alumno> lista = new ArrayList<Alumno>();
+        lista.add(new Alumno("Kevin", "Gamboa", "12001493", 19, 81));
+        lista.add(new Alumno("Adrian", "Leyva", "14001395", 22, 95));
+        lista.add(new Alumno("Marco", "Chavez", "13001643", 21, 94));
+        return lista;
+    }
+    public void imprimiArreglo(ArrayList <Alumno> array){
+        int size = array.size(), i;
+        for (i=0;i<size;i++){
+            System.out.print(array.get(i).getNombre() + " ");
+            System.out.print(array.get(i).getApellido() + " ");
+            System.out.print(array.get(i).getMatricula() + " ");
+            System.out.print(array.get(i).getEdad() + " ");
+            System.out.print(array.get(i).getPromedio() + "\n");
+        }
+    }
+
+    public static void main(String[] args){
+        ArrayList<Alumno> listaAlumnos , listaOrdenada;
+        MergeSort merge= new MergeSort();
+        int tipo;
+        Scanner scanner = new Scanner(System.in);
+        listaAlumnos = merge.crearArrayAlumnos();
+        long inicio;
+
+        System.out.println("Lista desordenada\n");
+        merge.imprimiArreglo(listaAlumnos);
+        System.out.println("\n¿Cómo desea ordenar la lista?");
+        tipo = scanner.nextInt();
+        System.out.println("Lista ordenada\n");
         inicio = System.currentTimeMillis();
-        lista = merge.ordenaMerge(lista);
-        System.out.println(lista);
-        System.out.println("La ordenación duró " + (System.currentTimeMillis() - inicio) + " ms" );
+        listaOrdenada = merge.ordenaMergeMod(listaAlumnos, tipo);
+        merge.imprimiArreglo(listaOrdenada);
+        System.out.println("\nLa ordenación duró " + (System.currentTimeMillis() - inicio) + " ms" );
     }
 }
