@@ -1,6 +1,4 @@
-package Burbuja;
-
-import java.util.Scanner;
+package Ordenamiento;
 
 /**
  * Created by kevingamboa17 on 8/18/16.
@@ -80,9 +78,9 @@ public class Métodos {
         }
     }
 
-    public void shellsortMod(){
+    public void shellsortMod(int sec){
         int intervalo,i,aux;
-        int secuencias[] = secuencias();
+        int secuencias[] = secuencias(sec);
         boolean band;
 
         for (int j=0; j < secuencias.length;j++){
@@ -106,12 +104,10 @@ public class Métodos {
 
     }
 
-    public int[] secuencias(){
+    public int[] secuencias(int sec){
         int opcion;
         int secuencias[];
-        System.out.println("Ingresa el número de secuencias: ");
-        Scanner n = new Scanner(System.in);
-        opcion = n.nextInt();
+        opcion = sec;
 
         switch (opcion){
             case 1:
@@ -161,7 +157,7 @@ public class Métodos {
                 secuencias[2] = 1;
                 return secuencias;
             case 10:
-                secuencias = new int[2];
+                secuencias = new int[3];
                 secuencias[0] = 3;
                 secuencias[1] = 2;
                 secuencias[2] = 1;
