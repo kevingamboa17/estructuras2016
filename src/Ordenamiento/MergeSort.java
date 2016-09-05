@@ -165,11 +165,18 @@ public class MergeSort {
         return lista;
     }
 
-    public ArrayList<Alumno> crearArrayAlumnos(){
+    public ArrayList<Alumno> crearArrayAlumnos()    {
         ArrayList<Alumno> lista = new ArrayList<Alumno>();
         lista.add(new Alumno("Kevin", "Gamboa", "12001493", 19, 81));
-        lista.add(new Alumno("Adrian", "Leyva", "14001395", 22, 95));
-        lista.add(new Alumno("Marco", "Chavez", "13001643", 21, 94));
+        lista.add(new Alumno("Adrian", "Leyva", "14001395", 22, 77));
+        lista.add(new Alumno("Marco", "Chavez", "13001643", 21, 99));
+        lista.add(new Alumno("Armando", "Carjaval", "14829373", 19, 87));
+        lista.add(new Alumno("Daniel", "Baas", "13001167", 18, 99));
+        lista.add(new Alumno("Aquino", "Cob", "13001483", 16, 62));
+        lista.add(new Alumno("Rolando", "tupe", "12001443", 2, 55));
+        lista.add(new Alumno("Lionel", "Messi", "13001643", 33, 99));
+        lista.add(new Alumno("Steve", "Jobs", "10372854", 32, 73));
+        lista.add(new Alumno("Yisus", "Craist", "10362712", 12, 4));
         return lista;
     }
     public void imprimiArreglo(ArrayList <Alumno> array){

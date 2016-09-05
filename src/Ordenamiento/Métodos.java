@@ -1,5 +1,7 @@
 package Ordenamiento;
 
+import java.util.ArrayList;
+
 /**
  * Created by kevingamboa17 on 8/18/16.
  */
@@ -166,6 +168,66 @@ public class Métodos {
         secuencias = new int[1];
         secuencias[0] = 1;
         return secuencias;
+    }
+
+    public void Quicksort(){
+        int ini, fin , pos;
+        ArrayList pilaMenor = new ArrayList(), pilaMayor = new ArrayList();
+        pilaMenor.add(0);
+        pilaMayor.add(Arreglo.length-1);
+        while (!pilaMenor.isEmpty()){
+            ini = (Integer)pilaMenor.remove(pilaMenor.size()-1);
+            fin = (Integer)pilaMayor.remove(pilaMayor.size()-1);
+            pos = posicionaQuicksort(ini, fin);
+
+            if (ini<pos-1){
+                pilaMenor.add(ini);
+                pilaMayor.add(pos-1);
+            }
+            if (fin>pos+1){
+                pilaMenor.add(pos+1);
+                pilaMayor.add(fin);
+            }
+        }
+
+    }
+
+    public int posicionaQuicksort(int ini, int fin){
+        int pos, izq, der, aux;
+        boolean band;
+        izq = ini;
+        der = fin;
+        pos = ini;
+        band = true;
+        while (band){
+            while (Arreglo[pos] <= Arreglo[der] && pos!=der){
+                der--;
+            }
+            if (pos==der){
+                band = false;
+            }
+            else {
+                aux = Arreglo[pos];
+                Arreglo[pos] = Arreglo[der];
+                Arreglo[der] = aux;
+                pos= der;
+                while (Arreglo[pos]>=Arreglo[izq] && pos!=izq){
+                    izq++;
+                }
+                if (pos==izq){
+                    band=false;
+                }
+                else {
+                    aux = Arreglo[pos];
+                    Arreglo[pos] = Arreglo[izq];
+                    Arreglo[izq] = aux;
+                    pos = izq;
+                }
+            }
+
+        }
+
+        return pos;
     }
 
 }
